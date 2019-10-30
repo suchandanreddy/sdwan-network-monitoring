@@ -112,23 +112,23 @@ def list_site_ids():
     
     site_ids.sort()
     site_ids = list(dict.fromkeys(site_ids))
-    sorted_siteids=formatpagelist(site_ids)
+    sorted_siteids=format_site_ids(site_ids)
     print("\nList of all site-ids retrieved : ", sorted_siteids)
 
-def formatpagelist(numberlist):
-    prev_number = min(numberlist) if numberlist else None
-    pagelist = list()
+def format_site_ids(site_ids):
+    prev_id = min(site_ids) if site_ids else None
+    site_list = list()
 
-    for number in sorted(numberlist):
-        if number != prev_number+1:
-            pagelist.append([number])
-        elif len(pagelist[-1]) > 1:
-            pagelist[-1][-1] = number
+    for id in sorted(site_ids):
+        if id != prev_id+1:
+            site_list.append([id])
+        elif len(site_list[-1]) > 1:
+            site_list[-1][-1] = id
         else:
-            pagelist[-1].append(number)
-        prev_number = number
+            site_list[-1].append(id)
+        prev_id = id
 
-    return ','.join(['-'.join(map(str,page)) for page in pagelist])
+    return ','.join(['-'.join(map(str,site)) for site in site_list])
 
 cli.add_command(list_site_ids)
 
